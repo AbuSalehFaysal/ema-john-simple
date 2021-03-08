@@ -7,7 +7,7 @@ const Cart = (props) => {
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
         const product = cart[i];
-        total = total + product.price;
+        total = total + product.price*product.quantity;
     }
     let shipping = 0;
     if (total >= 15 && total < 35) {
@@ -28,9 +28,9 @@ const Cart = (props) => {
             <p><small>TAX/VAT: {tax}</small></p>
             <p><small>Total Price including all charges: {grandTotal}</small></p>
             <br/>
-            <Link to="/review">
-            <button className="main-button">Review Order</button>
-            </Link>
+            {
+                props.children
+            }
         </div>
     );
 };
