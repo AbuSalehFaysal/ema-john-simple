@@ -5,12 +5,14 @@ import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
 import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Shop = () => {
     // console.log(fakeData);
     const first10 = fakeData.slice(0, 10);
     const [products, setProducts] = useState(first10);
     const [cart, setCart] = useState([]);
+    document.title = "Shop";
 
     useEffect(() => {
         const savedCart = getDatabaseCart();
@@ -45,6 +47,9 @@ const Shop = () => {
     return (
         <div className="twin-container">
             <div className="product-container">
+                {
+                    products.length ===  0 && <CircularProgress />
+                }
                 {
                     products.map(pd => <Product
                         key={pd.key}
